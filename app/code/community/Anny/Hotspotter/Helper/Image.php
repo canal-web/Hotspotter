@@ -44,48 +44,47 @@ class Anny_Hotspotter_Helper_Image extends Mage_Core_Helper_Abstract {
 		return null;
 	}
 
-	public function getUrl($rel) {
-		return Mage::getBaseUrl('media').'/'.$rel;
+	public function getUrl($path) {
+		return Mage::getBaseUrl('media').$this->getRelativePath($path);
 	}
 
-	public function getPath($rel) {
-		return Mage::getBaseDir('media').DS.$rel;
+	public function getPath($path) {
+		return Mage::getBaseDir('media').DS.$this->getRelativePath($path);
 	}
 
-	public function getCachePath($rel, $w, $h) {
-		$abs = $this->getPath($rel);
-		$abs = str_replace($this->_dirBase, $this->_dirCache, $abs);
-		$rel = $this->getRelativePath($abs);
-		$dir = dirname($abs);
-		$file = basename($rel);
-		return $dir.DS.$w.'x'.$h.'.'.$file;
+	public function getCachePath($path, $w, $h) {
+		$file = basename($path);
+		return $this->_dirCache.DS.$w.'x'.$h.'.'.$file;
 	}
 
 	public function getRelativePath($abs) {
 		return str_replace(Mage::getBaseDir('media').DS, '', $abs);
 	}
 
-	public function getDimensions($rel) {
-		$path = $this->getPath($rel);
+	public function getDimensions($path) {
+		$path = $this->getPath($path);
 		$img = new Varien_Image($path);
 		return array($img->getOriginalWidth(), $img->getOriginalHeight());
 	}
 
-	public function resizeImage($rel, $w, $h, $constrain, $aspect, $frame) {
-		$path = $this->getPath($rel);
-		$newPath = $this->getCachePath($rel, $w, $h);
+	public function resizeImage($path, $w, $h, $constrain, $aspect, $frame) {
+		$path = $this->getPath($path);
+		$cachePath = $this->getCachePath($path, $w, $h);
+		if (file_exists($cachePath)) {
+			return $this->getUrl($cachePath);
+		}
 		try {
 			$img = new Varien_Image($path);
 			$img->constrainOnly($constrain);
 			$img->keepAspectRatio($aspect);
 			$img->keepFrame($frame);
 			$img->resize($w, $h);
-			$img->save($newPath);
-			return $this->getUrl($this->getRelativePath($newPath));
+			$img->save($cachePath);
+			return $this->getUrl($cachePath);
 		}
 		catch (Exception $e) {
 			Mage::logException($e);
-			return $this->getUrl($rel);
+			return $this->getUrl($path);
 		}
 	}
 }
