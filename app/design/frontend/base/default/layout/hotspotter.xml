@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout>
+	<default>
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_css</type>
+				<file>hotspot/hotspot.css</file>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<file>hotspot/hotspot.js</file>
+			</action>
+		</reference>
+	</default>
+</layout>

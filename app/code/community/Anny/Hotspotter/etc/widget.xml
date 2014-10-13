@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<widgets>
+	<hotspotter_hotspot type="hotspotter/hotspot" translate="name description" module="hotspotter">
+		<name>Hotspot</name>
+		<description>Place an image with hotspots</description>
+		<parameters>
+			<image translate="label">
+				<label>Image</label>
+				<required>1</required>
+				<visible>1</visible>
+				<type>image</type>
+			</image>
+			<imagesize translate="label">
+				<label>Image Size (W,H)</label>
+				<visible>1</visible>
+				<type>text</type>
+			</imagesize>
+			<spot1type translate="label">
+				<label>Spot 1 Type</label>
+				<visible>1</visible>
+				<type>select</type>
+				<source_model>hotspotter/system_config_source_hotspot_type</source_model>
+			</spot1type>
+			<spot1value translate="label">
+				<label>Spot 1 Value</label>
+				<visible>1</visible>
+				<type>text</type>
+			</spot1value>
+			<spot1xy translate="label">
+				<label>Spot 1 Position (X,Y)</label>
+				<visible>1</visible>
+				<type>text</type>
+			</spot1xy>
+			<spot2type translate="label">
+				<label>Spot 2 Type</label>
+				<visible>1</visible>
+				<type>select</type>
+				<source_model>hotspotter/system_config_source_hotspot_type</source_model>
+			</spot2type>
+			<spot2value translate="label">
+				<label>Spot 2 Value</label>
+				<visible>1</visible>
+				<type>text</type>
+			</spot2value>
+			<spot2xy translate="label">
+				<label>Spot 2 Position (X,Y)</label>
+				<visible>1</visible>
+				<type>text</type>
+			</spot2xy>
+			<spot3type translate="label">
+				<label>Spot 3 Type</label>
+				<visible>1</visible>
+				<type>select</type>
+				<source_model>hotspotter/system_config_source_hotspot_type</source_model>
+			</spot3type>
+			<spot3value translate="label">
+				<label>Spot 3 Value</label>
+				<visible>1</visible>
+				<type>text</type>
+			</spot3value>
+			<spot3xy translate="label">
+				<label>Spot 3 Position (X,Y)</label>
+				<visible>1</visible>
+				<type>text</type>
+			</spot3xy>
+		</parameters>
+	</hotspotter_hotspot>
+</widgets>
