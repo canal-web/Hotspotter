@@ -1,0 +1,5 @@
+<?php $product = $this->getProduct(); ?>
+<div class="std content">
+	<h2><a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->htmlEscape($product->getName()) ?></a></h2>
+	<p><?php echo $product->getShortDescription(); ?></p>
+</div>

@@ -75,17 +75,43 @@ class Anny_Hotspotter_Block_Hotspot extends Mage_Core_Block_Template implements 
 
 	protected function getLeft($spot) {
 		list($w, $h) = $this->getOriginalDimensions();
-		$p = 100*($spot['xy'][0]/$w);
-		return sprintf('%.1f%%', $p);
+		$p = $spot['xy'][0]/$w;
+		return sprintf('%dpx', $w*$p);
 	}
 
 	protected function getTop($spot) {
 		list($w, $h) = $this->getOriginalDimensions();
-		$p = 100*($spot['xy'][1]/$h);
-		return sprintf('%.1f%%', $p);
+		$p = $spot['xy'][1]/$h;
+		return sprintf('%dpx', $h*$p);
 	}
 
 	protected function getContent($spot) {
-		return $spot['value'];
+		if ($spot['type'] == Anny_Hotspotter_Model_System_Config_Source_Hotspot_Type::STATIC_BLOCK) {
+			return $this->_getStaticBlockContent($spot);
+		}
+		else if($spot['type'] == Anny_Hotspotter_Model_System_Config_Source_Hotspot_Type::PRODUCT_SKU) {
+			return $this->_getProductContent($spot);
+		}
+		Mage::throwException($this->__('Invalid content type for widget.'));
+	}
+
+	protected function _getStaticBlockContent($spot) {
+		$blockId = $spot['value'];
+		$block = $this->getLayout()->createBlock('cms/block');
+		$block->setBlockId($blockId);
+		return $block->toHtml();
+	}
+
+	protected function _getProductContent($spot) {
+		$sku = $spot['value'];
+		$product = Mage::getModel('catalog/product');
+		$id = $product->getIdBySku($sku);
+		if ($id) {
+			$product->load($id);
+			$block = $this->getLayout()->createBlock('hotspotter/hotspot_product');
+			$block->setProduct($product);
+			return $block->toHtml();
+		}
+		return '';
 	}
 }

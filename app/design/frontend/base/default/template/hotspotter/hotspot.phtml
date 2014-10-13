@@ -1,0 +1,17 @@
+<?php list($w, $h) = $this->getEmbedDimensions() ?>
+<div class="hs-all-container" style="width: <?php echo $w ?>px; height: <?php echo $h ?>px;">
+	<ul class="hs-spot-container">
+		<?php foreach ($this->getSpots() as $spot): ?>
+			<li class="hs-spot" style="left: <?php echo $this->getLeft($spot) ?>; top: <?php echo $this->getTop($spot) ?>;">
+				<span class="pin"></span>
+				<div class="hs-content">
+					<?php echo $this->getContent($spot); ?>
+				</div>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+	<div class="hs-image">
+		<?php $image = $this->resizeImage(); ?>
+		<img src="<?php echo $image ?>"/>
+	</div>
+</div>
