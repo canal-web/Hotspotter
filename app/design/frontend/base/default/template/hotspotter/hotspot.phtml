@@ -1,8 +1,9 @@
 <?php list($w, $h) = $this->getEmbedDimensions() ?>
-<div class="hs-all-container" style="width: <?php echo $w ?>px; height: <?php echo $h ?>px;">
+<div class="hs-all-container" style="width: <?php echo $w ?>; height: <?php echo $h ?>;">
 	<ul class="hs-spot-container">
 		<?php foreach ($this->getSpots() as $spot): ?>
-			<li class="hs-spot" style="left: <?php echo $this->getLeft($spot) ?>; top: <?php echo $this->getTop($spot) ?>;">
+			<?php list($l, $t) = $this->getSpotPosition($spot); ?>
+			<li class="hs-spot" style="left: <?php echo $l ?>; top: <?php echo $t ?>;">
 				<span class="pin"></span>
 				<div class="hs-content">
 					<?php echo $this->getContent($spot); ?>

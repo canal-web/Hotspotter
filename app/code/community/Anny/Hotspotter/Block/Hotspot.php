@@ -10,14 +10,36 @@ class Anny_Hotspotter_Block_Hotspot extends Mage_Core_Block_Template implements 
 		return Mage::helper('hotspotter/image')->getDimensions($this->getData('image'));
 	}
 
+	protected function parseDimensions($size, $allowPercent=true) {
+		if (strpos($size, ',') !== false) {
+			$d = explode(',', $size);
+			array_walk($d, 'trim');
+			list($w, $h) = $d;
+		}
+		else {
+			$w = $h = $size;
+		}
+		$u = $allowPercent ? '/^\d+px|\d+(.\d+)?\%$/' : '/^\d+px$/';
+		$wOk = preg_match($u, $w);
+		$hOk = preg_match($u, $h);
+		if (! $wOk) {
+			preg_match('/\d+/', $w, $m);
+			if (count($m)) {
+				$w = array_shift($m).'px';
+			}
+		}
+		if (! $hOk) {
+			preg_match('/\d+/', $h, $m);
+			if (count($m)) {
+				$h = array_shift($m).'px';
+			}
+		}
+		return array($w, $h);
+	}
+
 	public function getEmbedDimensions() {
 		if ($size = $this->getData('imagesize')) {
-			preg_match_all('/\d+/', $size, $matches);
-			if (count($matches[0])) {
-				$w = reset($matches[0]);
-				$h = next($matches[0]);
-				return array($w, $h);
-			}
+			return $this->parseDimensions($size, false);
 		}
 		return $this->getOriginalDimensions();
 	}
@@ -48,11 +70,7 @@ class Anny_Hotspotter_Block_Hotspot extends Mage_Core_Block_Template implements 
 			$nf = preg_replace('/^spot\d+/', '', $field);
 			$d = $this->getData($field);
 			if ($nf == 'xy') {
-				preg_match_all('/\d+/', $d, $m);
-				$d = $m[0];
-				if (2 > count($d)) {
-					$d[] = end($d);
-				}
+				$d = $this->parseDimensions($d);
 			}
 			$data[$nf] = $d;
 		}
@@ -73,16 +91,8 @@ class Anny_Hotspotter_Block_Hotspot extends Mage_Core_Block_Template implements 
 		return $spots;
 	}
 
-	protected function getLeft($spot) {
-		list($w, $h) = $this->getOriginalDimensions();
-		$p = $spot['xy'][0]/$w;
-		return sprintf('%dpx', $w*$p);
-	}
-
-	protected function getTop($spot) {
-		list($w, $h) = $this->getOriginalDimensions();
-		$p = $spot['xy'][1]/$h;
-		return sprintf('%dpx', $h*$p);
+	public function getSpotPosition($spot) {
+		return $spot['xy'];
 	}
 
 	protected function getContent($spot) {
