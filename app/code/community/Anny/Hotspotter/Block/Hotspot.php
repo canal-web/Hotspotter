@@ -102,7 +102,7 @@ class Anny_Hotspotter_Block_Hotspot extends Mage_Core_Block_Template implements 
 		else if($spot['type'] == Anny_Hotspotter_Model_System_Config_Source_Hotspot_Type::PRODUCT_SKU) {
 			return $this->_getProductContent($spot);
 		}
-		Mage::throwException($this->__('Invalid content type for widget.'));
+		return $spot['value'];
 	}
 
 	protected function _getStaticBlockContent($spot) {

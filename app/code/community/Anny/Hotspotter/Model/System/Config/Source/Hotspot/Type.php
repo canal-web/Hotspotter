@@ -2,6 +2,7 @@
 
 class Anny_Hotspotter_Model_System_Config_Source_Hotspot_Type {
 	const DISABLED = '';
+	const RAW = 'raw';
 	const STATIC_BLOCK = 'cms_block';
 	const PRODUCT_SKU = 'product_sku';
 
@@ -9,6 +10,7 @@ class Anny_Hotspotter_Model_System_Config_Source_Hotspot_Type {
 		$helper = Mage::helper('hotspotter');
 		return array(
 			self::DISABLED => $helper->__('Disabled'),
+			self::RAW => $helper->__('Value As-Is'),
 			self::STATIC_BLOCK => $helper->__('CMS Static Block'),
 			self::PRODUCT_SKU => $helper->__('Product SKU')
 		);
