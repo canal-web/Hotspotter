@@ -5,7 +5,7 @@ class Anny_Hotspotter_Block_Saved extends Mage_Core_Block_Abstract {
 		$id = $this->getData('id');
 		if ($id) {
 			$widget = Mage::getModel('widget/widget_instance')->load($id);
-			if ($widget->getId() || $widget->getType() != 'hotspotter/hotspot') {
+			if ($widget->getId() && $widget->getType() == 'hotspotter/hotspot') {
 				return $widget;
 			}
 		}
