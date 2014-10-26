@@ -24,7 +24,7 @@
 			<spot1value translate="label">
 				<label>Spot 1 Value</label>
 				<visible>1</visible>
-				<type>text</type>
+				<type>textarea</type>
 			</spot1value>
 			<spot1xy translate="label">
 				<label>Spot 1 Position (X,Y)</label>
@@ -40,7 +40,7 @@
 			<spot2value translate="label">
 				<label>Spot 2 Value</label>
 				<visible>1</visible>
-				<type>text</type>
+				<type>textarea</type>
 			</spot2value>
 			<spot2xy translate="label">
 				<label>Spot 2 Position (X,Y)</label>
@@ -56,7 +56,7 @@
 			<spot3value translate="label">
 				<label>Spot 3 Value</label>
 				<visible>1</visible>
-				<type>text</type>
+				<type>textarea</type>
 			</spot3value>
 			<spot3xy translate="label">
 				<label>Spot 3 Position (X,Y)</label>
