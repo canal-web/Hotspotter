@@ -1,0 +1,6 @@
+src/app/code/community/Anny/Hotspotter                     app/code/community/Anny/Hotspotter                    
+src/app/design/frontend/base/default/layout/hotspotter.xml app/design/frontend/base/default/layout/hotspotter.xml
+src/app/design/frontend/base/default/template/hotspotter   app/design/frontend/base/default/template/hotspotter  
+src/app/etc/modules/Anny_Hotspotter.xml                    app/etc/modules/Anny_Hotspotter.xml                   
+src/skin/frontend/base/default/hotspot/hotspot.css         skin/frontend/base/default/hotspot/hotspot.css        
+src/skin/frontend/base/default/hotspot/pin.png             skin/frontend/base/default/hotspot/pin.png            
