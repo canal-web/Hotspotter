@@ -1,0 +1,14 @@
+{
+    "name": "canal-web/magento-hotspotter",
+    "type": "magento-module",
+    "description": "A simple Magento widget enabling you to upload an image and assign interactive hotspots.",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors":[
+      {
+            "name":"Aneurin",
+			"email":"https://github.com/annybs"
+        }
+    ]
+}
