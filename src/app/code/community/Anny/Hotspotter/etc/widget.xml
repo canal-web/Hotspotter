@@ -8,7 +8,7 @@
 				<label>Image</label>
 				<required>1</required>
 				<visible>1</visible>
-				<type>image</type>
+				<type>widgetimagechooser/chooser</type>
 			</image>
 			<imagesize translate="label">
 				<label>Image Size (W,H)</label>
